@@ -27,6 +27,10 @@
     <activity
         android:id="@+id/navigation_details"
         android:name="com.example.swapcardartists.ui.details.DetailsArtistActivity"
-        android:label="DetailsArtistActivity" />
+        android:label="DetailsArtistActivity" >
+        <argument
+            android:name="artist"
+            app:argType="com.example.swapcardartists.data.models.Artist" />
+    </activity>
 
 </navigation>

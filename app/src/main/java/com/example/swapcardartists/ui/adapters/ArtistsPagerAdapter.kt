@@ -40,12 +40,15 @@ class ArtistsPagerAdapter: PagingDataAdapter<Artist, ArtistsPagerAdapter.ArtistV
         fun bind(item: Artist)  {
             val artistName = binding.artistName
             artistName.text = item.name
+
+            val artistDetails = binding.artistDetails
+            artistDetails.text = item.disambiguation
         }
     }
 
 
     interface ArtistClickListener {
-        fun onArtistClicked(binding: ItemArtistBinding, character: Artist)
+        fun onArtistClicked(binding: ItemArtistBinding, artist: Artist)
     }
 
 

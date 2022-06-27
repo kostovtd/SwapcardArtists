@@ -13,11 +13,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.swapcardartists.R
+import com.example.swapcardartists.data.models.Artist
 import com.example.swapcardartists.databinding.FragmentSearchArtistsBinding
+import com.example.swapcardartists.databinding.ItemArtistBinding
 import com.example.swapcardartists.ui.adapters.ArtistsPagerAdapter
+import com.example.swapcardartists.ui.favorite.FavoriteArtistsFragmentDirections
 import kotlinx.coroutines.flow.collectLatest
 
-class SearchArtistsFragment : Fragment() {
+class SearchArtistsFragment : Fragment(), ArtistsPagerAdapter.ArtistClickListener {
 
     private val searchArtistsViewModel: SearchArtistsViewModel by activityViewModels()
 
@@ -35,6 +38,7 @@ class SearchArtistsFragment : Fragment() {
         val root: View = binding.root
 
         val artistsAdapter = ArtistsPagerAdapter()
+        artistsAdapter.artistClickListener = this
 
         val artistsList: RecyclerView = binding.artistsList
         artistsList.apply {
@@ -55,5 +59,11 @@ class SearchArtistsFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    override fun onArtistClicked(binding: ItemArtistBinding, artist: Artist) {
+        val action = SearchArtistsFragmentDirections.actionNavigationSearchToNavigationDetails(artist)
+        findNavController().navigate(action)
     }
 }

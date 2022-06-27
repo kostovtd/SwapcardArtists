@@ -1,0 +1,9 @@
+query Artists() {
+  search {
+    artists(query: "John", first: 10, after: null) {
+      nodes {
+        ...ArtistBasicFragment
+      }
+    }
+  }
+}

@@ -3,4 +3,11 @@
     <string name="title_search">Search</string>
     <string name="title_favorite">Favorite</string>
     <string name="not_available">N/A</string>
+    <string name="label_name">Name:</string>
+    <string name="label_description">Description:</string>
+    <string name="label_country">Country:</string>
+    <string name="label_type">Type:</string>
+    <string name="label_rating_value">Rating:</string>
+    <string name="label_votes_count">Votes:</string>
+    <string name="details">Details</string>
 </resources>

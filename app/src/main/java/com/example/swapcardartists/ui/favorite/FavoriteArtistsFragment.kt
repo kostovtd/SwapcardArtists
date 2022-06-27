@@ -35,8 +35,8 @@ class FavoriteArtistsFragment : Fragment() {
 
         val buttonDetails: Button = binding.buttonDetails
         buttonDetails.setOnClickListener {
-            val action = FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails()
-            findNavController().navigate(action)
+//            val action = FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails()
+//            findNavController().navigate(action)
         }
 
         return root

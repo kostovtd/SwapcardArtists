@@ -1,14 +1,10 @@
 package com.example.swapcardartists.ui.details
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.swapcardartists.data.models.Artist
 
 class DetailsArtistViewModel: ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is details Fragment"
-    }
-    val text: LiveData<String> = _text
+    var artist: Artist? = null
 
 }
