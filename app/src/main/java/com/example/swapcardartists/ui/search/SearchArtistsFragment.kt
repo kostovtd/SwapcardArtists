@@ -8,9 +8,14 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.swapcardartists.R
 import com.example.swapcardartists.databinding.FragmentSearchArtistsBinding
+import com.example.swapcardartists.ui.adapters.ArtistsPagerAdapter
+import kotlinx.coroutines.flow.collectLatest
 
 class SearchArtistsFragment : Fragment() {
 
@@ -20,6 +25,7 @@ class SearchArtistsFragment : Fragment() {
 
     private val binding get() = _binding!!
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -28,19 +34,23 @@ class SearchArtistsFragment : Fragment() {
         _binding = FragmentSearchArtistsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSearch
-        searchArtistsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val artistsAdapter = ArtistsPagerAdapter()
+
+        val artistsList: RecyclerView = binding.artistsList
+        artistsList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = artistsAdapter
         }
 
-        val buttonDetails: Button = binding.buttonDetails
-        buttonDetails.setOnClickListener {
-            val action = SearchArtistsFragmentDirections.actionNavigationSearchToNavigationDetails()
-            findNavController().navigate(action)
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            searchArtistsViewModel.artistsFlow.collectLatest { pagingData ->
+                artistsAdapter.submitData(pagingData)
+            }
         }
 
         return root
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
