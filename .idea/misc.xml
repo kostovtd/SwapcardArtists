@@ -8,6 +8,7 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1645" />
         <entry key="app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.1645" />
+        <entry key="app/src/main/res/drawable/selector_favorite_white_24dp.xml" value="0.1105" />
         <entry key="app/src/main/res/layout/activity_details_artist.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.15833333333333333" />
@@ -15,6 +16,7 @@
         <entry key="app/src/main/res/layout/fragment_favorite_artists.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/fragment_search_artists.xml" value="0.15833333333333333" />
         <entry key="app/src/main/res/layout/item_artist.xml" value="0.15729166666666666" />
+        <entry key="app/src/main/res/menu/artist_details_menu.xml" value="0.15729166666666666" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.15833333333333333" />
       </map>
     </option>
