@@ -1,13 +1,18 @@
 package com.example.swapcardartists.ui.favorite
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.content.Context
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.example.swapcardartists.data.models.Artist
+import com.example.swapcardartists.data.repositories.ArtistsRepository
+import kotlinx.coroutines.flow.Flow
 
 class FavoriteArtistsViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is favorite Fragment"
-    }
-    val text: LiveData<String> = _text
+    private val artistsRepository = ArtistsRepository()
+
+
+    fun getAllFavoriteArtists(context: Context) = artistsRepository.getAllFavoriteArtists(context).cachedIn(viewModelScope)
 }

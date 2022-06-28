@@ -22,6 +22,13 @@ class ArtistsRepository {
     }.flow
 
 
+    fun getAllFavoriteArtists(context: Context): Flow<PagingData<Artist>> = Pager(
+        PagingConfig(10, enablePlaceholders = false)
+    ) {
+        artistsLocalDataSource.getAllFavoriteArtists(context)
+    }.flow
+
+
     suspend fun addArtistToFavorites(context: Context, artist: Artist): Boolean {
         return artistsLocalDataSource.addArtistToFavorite(context, artist) > 0
     }

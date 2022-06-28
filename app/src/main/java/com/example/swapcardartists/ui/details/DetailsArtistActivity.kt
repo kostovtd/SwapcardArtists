@@ -3,6 +3,7 @@ package com.example.swapcardartists.ui.details
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import androidx.core.view.get
 import androidx.navigation.navArgs
 import com.example.swapcardartists.R
 import com.example.swapcardartists.databinding.ActivityDetailsArtistBinding
+import com.google.android.material.snackbar.Snackbar
 
 class DetailsArtistActivity : AppCompatActivity() {
 
@@ -19,6 +21,7 @@ class DetailsArtistActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailsArtistBinding
     private var toolbarMenu: Menu? = null
+    private lateinit var rootContainer: View
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,11 +56,13 @@ class DetailsArtistActivity : AppCompatActivity() {
         textVotes.text = detailsArtistViewModel.artist?.rating?.voteCount?.toString()
             ?: getString(R.string.not_available)
 
+        rootContainer = binding.rootContainer
         detailsArtistViewModel.isCurrentArtistInFavorites.observe(this) { isAdded ->
             toolbarMenu?.let { menu ->
                 if(isAdded) {
                     menu[0].isChecked = true
                     menu[0].icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_white_24dp)
+
                 } else {
                     menu[0].isChecked = false
                     menu[0].icon = ContextCompat.getDrawable(this, R.drawable.ic_favorite_border_white_24dp)
@@ -81,8 +86,10 @@ class DetailsArtistActivity : AppCompatActivity() {
                 item.isChecked = !item.isChecked
                 if (item.isChecked) {
                     detailsArtistViewModel.addCurrentArtistToFavorites(applicationContext)
+                    Snackbar.make(rootContainer, R.string.artist_add_favorites_confirmation, Snackbar.LENGTH_LONG).show()
                 } else {
                     detailsArtistViewModel.removeCurrentArtistFromFavorites(applicationContext)
+                    Snackbar.make(rootContainer, R.string.artist_remove_favorites_confirmation, Snackbar.LENGTH_LONG).show()
                 }
                 true
             }

@@ -8,11 +8,19 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.swapcardartists.R
+import com.example.swapcardartists.data.models.Artist
 import com.example.swapcardartists.databinding.FragmentFavoriteArtistsBinding
+import com.example.swapcardartists.databinding.ItemArtistBinding
+import com.example.swapcardartists.ui.adapters.ArtistsPagerAdapter
+import com.example.swapcardartists.ui.search.SearchArtistsFragmentDirections
+import kotlinx.coroutines.flow.collectLatest
 
-class FavoriteArtistsFragment : Fragment() {
+class FavoriteArtistsFragment : Fragment(), ArtistsPagerAdapter.ArtistClickListener {
 
     private val favoriteArtistsViewModel: FavoriteArtistsViewModel by activityViewModels()
 
@@ -28,22 +36,36 @@ class FavoriteArtistsFragment : Fragment() {
         _binding = FragmentFavoriteArtistsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textFavorite
-        favoriteArtistsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        val artistsAdapter = ArtistsPagerAdapter()
+        artistsAdapter.artistClickListener = this
+
+        val artistsList: RecyclerView = binding.favoriteArtistsList
+        artistsList.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = artistsAdapter
         }
 
-        val buttonDetails: Button = binding.buttonDetails
-        buttonDetails.setOnClickListener {
-//            val action = FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails()
-//            findNavController().navigate(action)
+        viewLifecycleOwner.lifecycleScope.launchWhenCreated {
+            context?.let {
+                favoriteArtistsViewModel.getAllFavoriteArtists(it).collectLatest { pagingData ->
+                    artistsAdapter.submitData(pagingData)
+                }
+            }
         }
 
         return root
     }
 
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+
+    override fun onArtistClicked(binding: ItemArtistBinding, artist: Artist) {
+        val action =
+            FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails(artist)
+        findNavController().navigate(action)
     }
 }

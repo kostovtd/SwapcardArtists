@@ -1,6 +1,7 @@
 package com.example.swapcardartists.data
 
 import android.content.Context
+import androidx.paging.PagingSource
 import com.example.swapcardartists.data.models.Artist
 
 class ArtistsLocalDataSource {
@@ -15,5 +16,9 @@ class ArtistsLocalDataSource {
 
     suspend fun findArtistById(context: Context, artist: Artist): Artist? {
         return ArtistsDatabase.getInstance(context).favoriteArtistsDao().getArtistById(artist.id)
+    }
+
+    fun getAllFavoriteArtists(context: Context): PagingSource<Int, Artist> {
+        return ArtistsDatabase.getInstance(context).favoriteArtistsDao().getAll()
     }
 }
