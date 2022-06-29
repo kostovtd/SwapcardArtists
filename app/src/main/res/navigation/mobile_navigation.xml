@@ -29,8 +29,8 @@
         android:name="com.example.swapcardartists.ui.details.DetailsArtistActivity"
         android:label="DetailsArtistActivity" >
         <argument
-            android:name="artist"
-            app:argType="com.example.swapcardartists.data.models.Artist" />
+            android:name="artistId"
+            app:argType="string" />
     </activity>
 
 </navigation>

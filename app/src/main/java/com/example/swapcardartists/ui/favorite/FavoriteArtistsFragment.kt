@@ -65,7 +65,7 @@ class FavoriteArtistsFragment : Fragment(), ArtistsPagerAdapter.ArtistClickListe
 
     override fun onArtistClicked(binding: ItemArtistBinding, artist: Artist) {
         val action =
-            FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails(artist)
+            FavoriteArtistsFragmentDirections.actionNavigationFavoriteToNavigationDetails(artist.id)
         findNavController().navigate(action)
     }
 }

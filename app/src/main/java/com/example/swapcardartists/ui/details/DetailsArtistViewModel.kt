@@ -13,16 +13,27 @@ class DetailsArtistViewModel: ViewModel() {
 
     private val artistsRepository = ArtistsRepository()
 
-    var artist: Artist? = null
+    var artistId: String? = null
 
     private val _isCurrentArtistInFavorites = MutableLiveData<Boolean>().apply {
         value = false
     }
     val isCurrentArtistInFavorites: LiveData<Boolean> = _isCurrentArtistInFavorites
 
+    private val _selectedArtist = MutableLiveData<Artist?>().apply {
+        value = null
+    }
+    val selectedArtist: LiveData<Artist?> = _selectedArtist
+
+
+    fun searchArtistById(id: String) {
+        viewModelScope.launch {
+            _selectedArtist.value = artistsRepository.searchArtistById(id)
+        }
+    }
 
     fun addCurrentArtistToFavorites(context: Context) {
-        artist?.let { artist ->
+        _selectedArtist.value?.let { artist ->
             viewModelScope.launch {
                 _isCurrentArtistInFavorites.value = artistsRepository.addArtistToFavorites(context, artist)
             }
@@ -31,7 +42,7 @@ class DetailsArtistViewModel: ViewModel() {
 
 
     fun removeCurrentArtistFromFavorites(context: Context) {
-        artist?.let { artist ->
+        _selectedArtist.value?.let { artist ->
             viewModelScope.launch {
                 _isCurrentArtistInFavorites.value = !artistsRepository.removeArtistFromFavorites(context, artist)
             }
@@ -40,7 +51,7 @@ class DetailsArtistViewModel: ViewModel() {
 
 
     fun isCurrentArtistInFavorites(context: Context) {
-        artist?.let { artist ->
+        _selectedArtist.value?.let { artist ->
             viewModelScope.launch {
                 val response = artistsRepository.isArtistInFavorites(context, artist)
                 _isCurrentArtistInFavorites.value = response != null

@@ -10,10 +10,11 @@ import java.io.Serializable
 )
 class Artist(
     val id: String,
-    val name: String,
-    val disambiguation: String,
+    val name: String?,
+    val disambiguation: String?,
     val country: String? = null,
     val type: String? = null,
+    val fanArtUrl: String? = null,
     @Embedded val rating: ArtistRating? = null
 ): Serializable
 

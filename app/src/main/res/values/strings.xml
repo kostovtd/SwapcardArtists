@@ -12,4 +12,5 @@
     <string name="details">Details</string>
     <string name="artist_add_favorites_confirmation">Added to favorites</string>
     <string name="artist_remove_favorites_confirmation">Removed from favorites</string>
+    <string name="search_query_empty">Search data must not be empty</string>
 </resources>

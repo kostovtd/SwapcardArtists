@@ -1,137 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root_container"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:fillViewport="true">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/startGl"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/endGl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="16dp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/topGl"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="16dp" />
-
-    <TextView
-        android:id="@+id/label_name"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/label_name"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/topGl"/>
+        android:background="@color/gray">
 
-    <TextView
-        android:id="@+id/text_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_name"
-        app:layout_constraintTop_toBottomOf="@id/topGl"/>
+        <ImageView
+            android:id="@+id/artist_image"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toStartOf="@id/startGl"
+            app:layout_constraintTop_toTopOf="@id/topGl" />
 
-    <TextView
-        android:id="@+id/label_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_description"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/label_name"/>
+        <TextView
+            android:id="@+id/label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/artist_image" />
 
-    <TextView
-        android:id="@+id/text_description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_description"
-        app:layout_constraintTop_toBottomOf="@id/text_name"/>
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_name" />
 
-    <TextView
-        android:id="@+id/label_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_country"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/label_description"/>
-
-    <TextView
-        android:id="@+id/text_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_country"
-        app:layout_constraintTop_toBottomOf="@id/text_description"/>
-
-    <TextView
-        android:id="@+id/label_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_type"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/label_country"/>
-
-    <TextView
-        android:id="@+id/text_type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_type"
-        app:layout_constraintTop_toBottomOf="@id/text_country"/>
-
-    <TextView
-        android:id="@+id/label_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_rating_value"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/label_type"/>
-
-    <TextView
-        android:id="@+id/text_rating"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_rating"
-        app:layout_constraintTop_toBottomOf="@id/text_type"/>
-
-    <TextView
-        android:id="@+id/label_votes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/label_votes_count"
-        app:layout_constraintStart_toEndOf="@id/startGl"
-        app:layout_constraintTop_toBottomOf="@id/label_rating"/>
-
-    <TextView
-        android:id="@+id/text_votes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        app:layout_constraintStart_toEndOf="@id/label_votes"
-        app:layout_constraintTop_toBottomOf="@id/text_rating"/>
+        <TextView
+            android:id="@+id/label_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_description"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/separator_name" />
 
 
+        <TextView
+            android:id="@+id/text_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_description" />
+
+        <TextView
+            android:id="@+id/label_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_country"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/separator_description" />
+
+        <TextView
+            android:id="@+id/text_country"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_country" />
+
+        <TextView
+            android:id="@+id/label_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_type"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/separator_country" />
+
+        <TextView
+            android:id="@+id/text_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_type" />
+
+        <TextView
+            android:id="@+id/label_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_rating_value"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/separator_type" />
+
+        <TextView
+            android:id="@+id/text_rating"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_rating" />
+
+        <TextView
+            android:id="@+id/label_votes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/label_votes_count"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/separator_rating" />
+
+        <TextView
+            android:id="@+id/text_votes"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/label_votes" />
+
+        <View
+            android:id="@+id/separator_name"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/text_name" />
+
+        <View
+            android:id="@+id/separator_description"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/text_description" />
+
+        <View
+            android:id="@+id/separator_country"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/text_country" />
 
 
-    <!--    <TextView-->
-<!--        android:id="@+id/text_details"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+        <View
+            android:id="@+id/separator_type"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/text_type" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/separator_rating"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/dark_gray"
+            app:layout_constraintEnd_toStartOf="@id/endGl"
+            app:layout_constraintStart_toEndOf="@id/startGl"
+            app:layout_constraintTop_toBottomOf="@id/text_rating" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/startGl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/endGl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/topGl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="16dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

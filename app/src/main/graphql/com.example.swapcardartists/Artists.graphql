@@ -1,0 +1,40 @@
+query GetAllArtistsByName($name: String!, $firstIndex: Int!) {
+  search {
+    artists(query: $name, first: $firstIndex, after: null) {
+      nodes {
+        ...ArtistBasicFragment
+      }
+    }
+  }
+}
+
+query GetArtistDetails($artistId: ID!) {
+  node(id: $artistId) {
+    ...ArtistDetailsFragment
+  }
+}
+
+
+fragment ArtistDetailsFragment on Artist {
+  id
+  name
+  disambiguation
+  country
+  type
+  fanArt{
+    backgrounds {
+      url
+    }
+  }
+  rating {
+    value
+    voteCount
+  }
+}
+
+
+fragment ArtistBasicFragment on Artist {
+  id
+  name
+  disambiguation
+}

@@ -5,8 +5,11 @@ import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.apollographql.apollo.api.Response
+import com.example.swapcardartists.GetAllArtistsByNameQuery
 import com.example.swapcardartists.data.ArtistsLocalDataSource
 import com.example.swapcardartists.data.ArtistsPagingSource
+import com.example.swapcardartists.data.ArtistsRemoteDataSource
 import com.example.swapcardartists.data.ArtistsService
 import com.example.swapcardartists.data.models.Artist
 import kotlinx.coroutines.flow.Flow
@@ -14,12 +17,18 @@ import kotlinx.coroutines.flow.Flow
 class ArtistsRepository {
 
     private val artistsLocalDataSource = ArtistsLocalDataSource()
+    private val artistsRemoteDataSource = ArtistsRemoteDataSource()
 
-    fun getAllArtists(): Flow<PagingData<Artist>> = Pager(
+    fun searchArtistsByName(name: String): Flow<PagingData<Artist>> = Pager(
         PagingConfig(10, enablePlaceholders = false)
     ) {
-        ArtistsPagingSource(ArtistsService())
+        ArtistsPagingSource(name, artistsRemoteDataSource)
     }.flow
+
+
+    suspend fun searchArtistById(artistId: String): Artist? {
+        return artistsRemoteDataSource.searchArtistById(artistId)
+    }
 
 
     fun getAllFavoriteArtists(context: Context): Flow<PagingData<Artist>> = Pager(
